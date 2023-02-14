@@ -7,6 +7,8 @@
 :root {
   --main-black-color: #111111;
   --main-orange-color: #FF9514;
+  --main-blue-color: #333E48;
+
 }
 
 body {
@@ -21,6 +23,16 @@ body {
   font-size: 2.125rem;
   font-weight: 900;
   color: var(--main-black-color);
+}
+
+.input-container,
+.payment-container {
+  margin: 1.5rem 0;
+}
+
+.input__label {
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .input-container__inputs {
@@ -105,4 +117,21 @@ input[type="range"]::-webkit-slider-runnable-track {
   z-index: 1;
 }
 
+.depositPercent {
+  padding: calc(1rem - 2px);
+  background: #E0E0E0;
+  /* opacity: 0.4; */
+  color: var(--main-blue-color);
+  border-radius: 0.75rem;
+  max-height: 3rem;
+  max-width: 4rem;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment__amount{
+  font-weight: 900;
+  font-size: 1.375rem;
+}
