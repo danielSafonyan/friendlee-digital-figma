@@ -6,6 +6,7 @@ import cleanInput from '../cleanInput'
 
 export default function Loan(props) {
   const [input, setInput] = React.useState(props.loan)
+  console.log('after init', input)
   function handleChange(e) {
     const newVal = cleanInput(e.target.value)
     setInput(newVal || Number(0))
@@ -13,20 +14,22 @@ export default function Loan(props) {
   function handleSubmit(e) {
     e.preventDefault()
     let value
-    if (input < 1000) {
+    if (input < defaultValues.loanMin) {
       console.log("small")
-      value = 1000
-    } else if(input > 5000000) {
-      value = 1000
+      value = defaultValues.loanMin
+    } else if(input > defaultValues.loanMax) {
+      value = defaultValues.loanMax
       console.log("big")
     } else {
       console.log('ok')
       value = input
     }
+    console.log('sub', value)
+    setInput(value)
     props.clickHandler({
       target:
       {name: e.target.name,
-      value: input}
+      value}
     })
   }
     const orangeWidth = (input - defaultValues.loanMin) / (defaultValues.loanMax - defaultValues.loanMin) * 100
@@ -56,7 +59,7 @@ export default function Loan(props) {
                  value={input}
                  onChange={handleChange}
                  className="input__range"
-                 min='1000'
+                 min={defaultValues.loanMin} 
                  max={defaultValues.loanMax + 100} 
                  step="1000"/>
           <div className="range-tracks-container">
