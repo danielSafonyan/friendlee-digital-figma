@@ -135,3 +135,14 @@ input[type="range"]::-webkit-slider-runnable-track {
   font-weight: 900;
   font-size: 1.375rem;
 }
+
+.sumbitBtn {
+  width: 100%;
+  background-color: var(--main-orange-color);
+  border: none;
+  height: 3.75rem;
+  border-radius: 2.5rem;
+  color: white;
+  font-weight: 900;
+  font-size: 1.375rem;
+}
