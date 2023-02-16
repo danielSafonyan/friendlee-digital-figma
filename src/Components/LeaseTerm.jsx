@@ -31,6 +31,14 @@ export default function LeaseTerm(props) {
       value}
     })
   }
+  function whitenParent(e) {
+      const container = (e.target.closest('.input-container__inputs'))
+      container.style.background ='none'
+    }
+    function greyParent(e) {
+      const container = (e.target.closest('.input-container__inputs'))
+      container.style.background ='#F3F3F4'
+    }
     const orangeWidth = (input - defaultValues.leaseTermMin) / (defaultValues.leaseTermMax - defaultValues.leaseTermMin) * 100 
     console.log(input, defaultValues.leaseTermMin, defaultValues.leaseTermMax, orangeWidth)
     console.log('input, defaultValues.leaseTermMin, defaultValues.leaseTermMax, orangeWidth')
@@ -39,7 +47,9 @@ export default function LeaseTerm(props) {
         <label htmlFor="leaseTerm" className="input__label">
           Срок лизинга
         </label>
-        <div className="input-container__inputs">
+        <div className="input-container__inputs" 
+        onBlur={greyParent}
+        onFocus={whitenParent}>
           <form name="leaseTerm" onSubmit={handleSubmit}>
           <input type="text"
                  id="leaseTerm"
@@ -64,7 +74,11 @@ export default function LeaseTerm(props) {
                  max={defaultValues.leaseTermMax}
                  step="1"/>
           <div className="range-tracks-container">
-            <div className="orange track" style={{width: `${orangeWidth}%`}}></div>
+            <div 
+            className="orange track" 
+            style={{width: `${orangeWidth}%`}}
+            onClick
+            ></div>
           </div>
         </div>
       </div>

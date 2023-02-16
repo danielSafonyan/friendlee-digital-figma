@@ -35,14 +35,17 @@ function App() {
   }
   return (
     <>
-      <div className='title'>Рассчитайте стоимость автомобиля в лизинг</div>
-      <Loan loan={state.loan} clickHandler={updateState}/>
-      <Deposit 
-        deposit={state.deposit} 
-        loan={state.loan}
-        clickHandler={updateState}
-      />
-      <LeaseTerm leaseTerm={state.leaseTerm} clickHandler={updateState}/>
+      <div className='title'>Рассчитайте стоимость <br/> автомобиля в лизинг</div>
+      <div className="main-input-container">
+        <Loan loan={state.loan} clickHandler={updateState}/>
+        <Deposit 
+          deposit={state.deposit} 
+          loan={state.loan}
+          clickHandler={updateState}
+        />
+        <LeaseTerm leaseTerm={state.leaseTerm} clickHandler={updateState}/>
+      </div>
+      <div className="main-output-container">
       <AgreementSum agreementSum={getSpacedNum(totalPayment)}/>
       <MonthlyPayment monthlyPayment={getSpacedNum(monthlyPayment)}
       />
@@ -51,6 +54,7 @@ function App() {
        ref={btnRef}
        onClick={btnClickHandler}
        >Оставить заявку</button>
+       </div>
     </>
   )
 }

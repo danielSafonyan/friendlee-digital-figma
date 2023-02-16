@@ -6,11 +6,23 @@ import cleanInput from '../cleanInput'
 
 export default function Loan(props) {
   const [input, setInput] = React.useState(props.loan)
-  console.log('after init', input)
   function handleChange(e) {
     const newVal = cleanInput(e.target.value)
     setInput(newVal || Number(0))
+    props.clickHandler({
+      target:
+      {name: e.target.name,
+      value: e.target.value}
+    })
   }
+  function whitenParent(e) {
+      const container = (e.target.closest('.input-container__inputs'))
+      container.style.background ='none'
+    }
+    function greyParent(e) {
+      const container = (e.target.closest('.input-container__inputs'))
+      container.style.background ='#F3F3F4'
+    }
   function handleSubmit(e) {
     e.preventDefault()
     let value
@@ -38,7 +50,11 @@ export default function Loan(props) {
         <label htmlFor="loan" className="input__label">
           Стоимость автомобиля
         </label>
-        <div className="input-container__inputs">
+        <div 
+        className="input-container__inputs" 
+        onFocus={whitenParent}
+        onBlur={greyParent}
+        >
           <form name="loan" onSubmit={handleSubmit}>
           <input type="text"
                  id="loan"

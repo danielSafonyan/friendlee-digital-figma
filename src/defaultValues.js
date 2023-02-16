@@ -1,13 +1,15 @@
 const defaultValues = {
-    loanMin: 1,
-    loanMax: 5000000,
+    loanMin: 1500000,
+    loanMax: 10000000,
     loanInit: 3300000,
 
-    depositMin: 5,
-    depositMax: 15,
-    depositInit: 13,
+    depositMin: 10,
+    depositMax: 60,
+    depositInit: 420000,
 
-    leaseTermMin: 12,
-    leaseTermMax: 70,
-    leaseTermMin: 60
+    leaseTermMin: 6,
+    leaseTermMax: 120,
+    leaseTermInit: 60
 }
+
+export default defaultValues
