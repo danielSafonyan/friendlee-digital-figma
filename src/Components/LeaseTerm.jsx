@@ -3,7 +3,7 @@ import defaultValues from '../defaultValues'
 import cleanInput from '../cleanInput'
 
 export default function LeaseTerm(props) {
-  const [input, setInput] = React.useState(props.leaseTermInit)
+  const [input, setInput] = React.useState(defaultValues.leaseTermInit)
   function handleChange(e) {
     const newVal = cleanInput(e.target.value) || Number(0)
     console.log(typeof newVal, 'newVal', newVal, Boolean(newVal))
@@ -31,7 +31,9 @@ export default function LeaseTerm(props) {
       value}
     })
   }
-    const orangeWidth = (input - defaultValues.leaseTermMin) / (defaultValues.leaseTermMax - defaultValues.leaseTermMin) * 100
+    const orangeWidth = (input - defaultValues.leaseTermMin) / (defaultValues.leaseTermMax - defaultValues.leaseTermMin) * 100 
+    console.log(input, defaultValues.leaseTermMin, defaultValues.leaseTermMax, orangeWidth)
+    console.log('input, defaultValues.leaseTermMin, defaultValues.leaseTermMax, orangeWidth')
     return (
         <div className="input-container">
         <label htmlFor="leaseTerm" className="input__label">
