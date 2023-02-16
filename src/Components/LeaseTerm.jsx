@@ -1,32 +1,65 @@
 import React from 'react'
+import defaultValues from '../defaultValues'
+import cleanInput from '../cleanInput'
 
 export default function LeaseTerm(props) {
-    const orangeWidth = props.leaseTerm / 5000000 * 100
+  const [input, setInput] = React.useState(props.leaseTermInit)
+  function handleChange(e) {
+    const newVal = cleanInput(e.target.value) || Number(0)
+    console.log(typeof newVal, 'newVal', newVal, Boolean(newVal))
+    setInput(newVal)
+    props.clickHandler({
+      target:
+      {name: e.target.name,
+      value: newVal}
+    })
+  }
+  function handleSubmit(e) {
+    e.preventDefault()
+    let value
+    if (input < defaultValues.leaseTermMin) {
+      value = defaultValues.leaseTermMin
+    } else if(input > defaultValues.leaseTermMax) {
+      value = defaultValues.leaseTermMax
+    } else {
+      value = input
+    }
+    setInput(value)
+    props.clickHandler({
+      target:
+      {name: e.target.name,
+      value}
+    })
+  }
+    const orangeWidth = (input - defaultValues.leaseTermMin) / (defaultValues.leaseTermMax - defaultValues.leaseTermMin) * 100
     return (
         <div className="input-container">
         <label htmlFor="leaseTerm" className="input__label">
           Срок лизинга
         </label>
         <div className="input-container__inputs">
-          <input type="number"
+          <form name="leaseTerm" onSubmit={handleSubmit}>
+          <input type="text"
                  id="leaseTerm"
                  name="leaseTerm"
                  value={props.leaseTerm}
-                 onChange={props.clickHandler}
+                 onChange={handleChange}
                  className="input__number"
-                 min="1"
-                 max="5000000" />
+                 min={defaultValues.leaseTermMin}
+                 max={defaultValues.leaseTermMax}
+                 />
+          </form>
           <label htmlFor="leaseTerm" className="input__label-aux">
              мес.
           </label>
           <input type="range"
                  id="leaseTerm"
                  name="leaseTerm"
-                 value={props.leaseTerm}
-                 onChange={props.clickHandler}
+                 value={props.leaseTerm.toString()}
+                 onChange={handleChange}
                  className="input__range"
-                 min="1"
-                 max="5000000"
+                 min={defaultValues.leaseTermMin}
+                 max={defaultValues.leaseTermMax}
                  step="1"/>
           <div className="range-tracks-container">
             <div className="orange track" style={{width: `${orangeWidth}%`}}></div>
